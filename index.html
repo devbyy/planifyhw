@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planify homepage</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: white;
+            color: #111;
+        }
+
+        header {
+            padding: 30px 20px;
+            text-align: center;
+            background: #fff;
+            border-bottom: 2px solid #d4af37;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+            font-size: 32px;
+            color: #b08827;
+        }
+
+        header p {
+            margin: 0 0 20px;
+            font-size: 16px;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 8px 14px;
+            border: 2px solid #d4af37;
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+            background: transparent;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            margin: 0 0 10px;
+            font-size: 22px;
+            color: #5a420a;
+        }
+
+        .feature {
+            margin-bottom: 12px;
+        }
+
+        .feature h3 {
+            margin: 0 0 4px;
+            font-size: 18px;
+            color: #3a2b18;
+        }
+
+        .feature p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .box {
+            border: 2px dashed #d4af37;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .team-member {
+            border: 1px solid #d4af37;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .team-member h3 {
+            margin: 8px 0 4px;
+            font-size: 16px;
+        }
+
+        .team-member span {
+            font-size: 13px;
+            color: #444;
+        }
+
+        footer {
+            padding: 12px 20px;
+            border-top: 2px solid #d4af37;
+            text-align: center;
+            font-size: 12px;
+            color: #555;
+            }
+        .button:hover {
+        background-color: #d4af37;
+        color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Planify</h1>
+        <p>Сайт для создания планов. Быстро делаешь план, смотришь итоги, сохраняешь на аккаунт.</p>
+        <button class="button" onclick="alert('рано, еще не готово')">начать планировать</button>
+    </header>
+
+    <main>
+        <section id="features">
+            <h2>features</h2>
+            <div class="feature">
+                <h3>Создание планов</h3>
+                <p>расписывай задачи и устанавливай сам себе дедлайны</p>
+            </div>
+            <div class="feature">
+                <h3>Регистрация</h3>
+                <p>заведи свой аккаунт и смотри свои планы с любого устройства</p>
+            </div>
+            <div class="feature">
+                <h3>Итоги</h3>
+                <p>любуйся своими достижениями и заряжайся мотивацией</p>
+            </div>
+            <div class="feature">
+                <h3>Простой дизайн</h3>
+                <p>бело-золотая цветовая схема, минимализм приятен глазу</p>
+            </div>
+            <div class="feature">
+                <h3>мы занем что селф менеджмент важен</h3>
+                <p>наш продукт решает проблему не эффективного управления временем</p>
+            </div>
+            <div class="feature">
+                <h3>поддержка</h3>
+                <p>поддержите наше развитие, сделайте вклад в свое будущее спокойствие</p>
+            </div>
+        </section>
+
+        <section id="mockups">
+            <h2>Логотип и эскизы</h2>
+            <div class="box"><img src="planify.png" alt="Логотип Planify" width="300"></div>
+            <div class="box"><img src="sketch1.png" alt="Эскиз 1" width="300"><img src="sketch2.png" alt="Эскиз 2" width="300"></div>
+        </section>
+
+        <section id="team">
+            <h2>Команда</h2>
+            <div class="team-member">
+                <div class="box" style="margin-bottom: 10px;"><img src="bau1.jpeg" alt="Есболат Бауыржан" width="300"></div>
+                <h3>Есболат Бауыржан</h3>
+                <span>Главный дизайнер и очень умный и красивый и вообще крутой огренджи, катает в доту2</span>
+            </div>
+            <div class="team-member">
+                <div class="box" style="margin-bottom: 10px;"><img src="aibar1.jpeg" alt="Мешитбай Айбар" width="300"></div>
+                <h3>Мешiтбай Айбар</h3>
+                <span>Главный программист, почти такой же крутой как Бауыржан, тоже любит доту, но первую </span>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        мы планируем сделать продукт к концу четверти, задонатье на KFC пж <br>Planify это сайт для создания планов. Сделано на GitHub, HTML и с поддержкой спонсора renzos store.
+    </footer>
+</body>
+</html>

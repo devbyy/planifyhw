@@ -1,176 +1,458 @@
-<!DOCTYPE html>
-<html lang="ru">
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planify homepage</title>
+    <title>Planify — Final Project</title>
     <style>
+        :root {
+            --bg: #fff8ef;
+            --surface: #ffffff;
+            --text: #1a1a1a;
+            --muted: #5a4a2d;
+            --gold: #d4af37;
+            --gold-dark: #8a6b23;
+            --border: #f2dd9d;
+            --shadow: 0 18px 45px rgba(26, 20, 4, 0.08);
+        }
+        * {
+            box-sizing: border-box;
+        }
         body {
             margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background: white;
-            color: #111;
+            font-family: Inter, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
         }
-
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(circle at top left, rgba(212,175,55,0.12), transparent 24%),
+                        radial-gradient(circle at bottom right, rgba(212,175,55,0.08), transparent 20%);
+        }
         header {
-            padding: 30px 20px;
-            text-align: center;
-            background: #fff;
-            border-bottom: 2px solid #d4af37;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(255,253,248,0.95);
+            border-bottom: 1px solid rgba(212,175,55,0.25);
+            backdrop-filter: blur(10px);
         }
-
-        header h1 {
-            margin: 0 0 10px;
-            font-size: 32px;
-            color: #b08827;
-        }
-
-        header p {
-            margin: 0 0 20px;
-            font-size: 16px;
-            max-width: 520px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 8px 14px;
-            border: 2px solid #d4af37;
-            text-decoration: none;
-            color: #000;
-            font-weight: bold;
-            background: transparent;
-        }
-
-        main {
-            padding: 20px;
-            max-width: 760px;
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 24px;
+            max-width: 1200px;
             margin: 0 auto;
         }
-
-        section {
-            margin-bottom: 30px;
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--gold-dark);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
-
-        h2 {
-            margin: 0 0 10px;
-            font-size: 22px;
-            color: #5a420a;
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: flex-end;
         }
-
-        .feature {
-            margin-bottom: 12px;
+        nav a {
+            color: var(--muted);
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 999px;
+            transition: background 180ms ease, color 180ms ease;
         }
-
-        .feature h3 {
-            margin: 0 0 4px;
-            font-size: 18px;
-            color: #3a2b18;
+        nav a:hover {
+            background: rgba(212,175,55,0.18);
+            color: var(--gold-dark);
         }
-
-        .feature p {
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px 24px 60px;
+        }
+        .hero {
+            display: grid;
+            gap: 24px;
+            padding: 40px 0;
+        }
+        .hero h1 {
             margin: 0;
-            font-size: 14px;
+            font-size: clamp(2.8rem, 5vw, 4.4rem);
+            line-height: 1.02;
+            color: var(--gold-dark);
         }
-
-        .box {
-            border: 2px dashed #d4af37;
-            padding: 20px;
-            text-align: center;
+        .hero p {
+            margin: 16px 0 0;
+            max-width: 760px;
+            font-size: 1.05rem;
+            color: #3b331e;
+        }
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+        .button,
+        .button-secondary {
+            border: 1px solid var(--gold);
+            border-radius: 999px;
+            padding: 12px 22px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+        }
+        .button {
+            background: var(--gold);
+            color: #fff;
+        }
+        .button:hover,
+        .button-secondary:hover {
+            transform: translateY(-2px);
+        }
+        .button-secondary {
+            background: transparent;
+            color: var(--gold-dark);
+        }
+        .overview {
+            display: grid;
+            gap: 18px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            margin-top: 36px;
+        }
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 22px;
+            box-shadow: var(--shadow);
+        }
+        .stat-card h3 {
+            margin: 0 0 12px;
+            font-size: 1rem;
+            color: var(--gold-dark);
+        }
+        .stat-card p {
+            margin: 0;
+            color: #4f4530;
+            font-size: 0.96rem;
+            line-height: 1.7;
+        }
+        .section-card {
+            margin-top: 28px;
+            padding: 30px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+        }
+        .section-card h2 {
+            margin: 0 0 18px;
+            font-size: 2rem;
+            color: var(--gold-dark);
+        }
+        .section-card p,
+        .section-card li,
+        .section-card dd {
+            color: #4b422c;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        .section-card ul {
+            padding-left: 1.2rem;
+            margin: 0;
+        }
+        .section-card li {
             margin-bottom: 12px;
-            font-size: 14px;
         }
-
-        .team-member {
-            border: 1px solid #d4af37;
-            padding: 12px;
-            margin-bottom: 12px;
+        .grid-2 {
+            display: grid;
+            gap: 24px;
+            grid-template-columns: 1fr 1fr;
         }
-
-        .team-member h3 {
-            margin: 8px 0 4px;
-            font-size: 16px;
+        .feature-list {
+            display: grid;
+            gap: 18px;
         }
-
-        .team-member span {
-            font-size: 13px;
-            color: #444;
+        .feature-item {
+            padding: 22px;
+            border-radius: 18px;
+            border: 1px solid rgba(212,175,55,0.18);
+            background: #fff;
+            box-shadow: 0 12px 25px rgba(26,20,4,0.06);
         }
-
-        footer {
-            padding: 12px 20px;
-            border-top: 2px solid #d4af37;
+        .feature-item h3 {
+            margin: 0 0 10px;
+            font-size: 1.1rem;
+            color: var(--gold-dark);
+        }
+        .feature-item p {
+            margin: 0;
+        }
+        .feature-step {
+            display: grid;
+            gap: 18px;
+            margin-top: 18px;
+        }
+        .step-card {
+            padding: 18px 20px;
+            border-radius: 16px;
+            background: #fff;
+            border: 1px solid rgba(212,175,55,0.16);
+        }
+        .step-card h4 {
+            margin: 0 0 8px;
+            font-size: 1rem;
+            color: var(--gold-dark);
+        }
+        .placeholder-large {
+            min-height: 260px;
+            border-radius: 22px;
+            border: 2px dashed var(--gold);
+            display: grid;
+            place-items: center;
+            color: #5d4b1b;
+            background: rgba(212,175,55,0.08);
+            font-weight: 700;
             text-align: center;
-            font-size: 12px;
-            color: #555;
+            padding: 24px;
+        }
+        .sponsor-card {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: 1.2fr 0.8fr;
+        }
+        .interview {
+            display: grid;
+            gap: 16px;
+        }
+        .interview dt {
+            font-weight: 700;
+            color: var(--gold-dark);
+            margin-top: 18px;
+        }
+        .interview dd {
+            margin: 6px 0 0 0;
+        }
+        .author-grid {
+            display: grid;
+            gap: 18px;
+            grid-template-columns: 1fr 1fr;
+        }
+        .author-card {
+            padding: 22px;
+            border-radius: 20px;
+            border: 1px solid rgba(212,175,55,0.18);
+            background: #fff;
+            box-shadow: 0 14px 30px rgba(26,20,4,0.05);
+        }
+        .author-card h3 {
+            margin: 0 0 10px;
+            font-size: 1.1rem;
+            color: var(--gold-dark);
+        }
+        .author-card p {
+            margin: 0 0 8px;
+            color: #4f4530;
+        }
+        .footer-note {
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            font-size: 0.95rem;
+            color: #6b5c41;
+        }
+        @media (max-width: 860px) {
+            .grid-2,
+            .sponsor-card,
+            .author-grid {
+                grid-template-columns: 1fr;
             }
-        .button:hover {
-        background-color: #d4af37;
-        color: white;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Planify</h1>
-        <p>Сайт для создания планов. Быстро делаешь план, смотришь итоги, сохраняешь на аккаунт.</p>
-        <button class="button" onclick="alert('рано, еще не готово')">начать планировать</button>
+        <div class="topbar">
+            <div class="logo">Planify</div>
+            <nav>
+                <a href="#overview">Overview</a>
+                <a href="#features">Features</a>
+                <a href="#demo">Demo</a>
+                <a href="#sketches">Sketches</a>
+                <a href="#sponsor">Sponsor</a>
+                <a href="#authors">Authors</a>
+            </nav>
+        </div>
     </header>
-
     <main>
-        <section id="features">
-            <h2>features</h2>
-            <div class="feature">
-                <h3>Создание планов</h3>
-                <p>расписывай задачи и устанавливай сам себе дедлайны</p>
+        <section class="hero">
+            <h1>Planify — smart planning for students</h1>
+            <p>Planify helps students and teams quickly organize tasks, track progress, and review monthly results in a clean, accessible interface.</p>
+            <div class="hero-actions">
+                <a class="button" href="#overview">Learn more</a>
+                <a class="button-secondary" href="#features">Explore features</a>
             </div>
-            <div class="feature">
-                <h3>Регистрация</h3>
-                <p>заведи свой аккаунт и смотри свои планы с любого устройства</p>
-            </div>
-            <div class="feature">
-                <h3>Итоги</h3>
-                <p>любуйся своими достижениями и заряжайся мотивацией</p>
-            </div>
-            <div class="feature">
-                <h3>Простой дизайн</h3>
-                <p>бело-золотая цветовая схема, минимализм приятен глазу</p>
-            </div>
-            <div class="feature">
-                <h3>мы занем что селф менеджмент важен</h3>
-                <p>наш продукт решает проблему не эффективного управления временем</p>
-            </div>
-            <div class="feature">
-                <h3>поддержка</h3>
-                <p>поддержите наше развитие, сделайте вклад в свое будущее спокойствие</p>
+            <div class="overview">
+                <div class="stat-card">
+                    <h3>What it is</h3>
+                    <p>An online planner for creating and saving daily, weekly, and monthly plans with clear progress tracking.</p>
+                </div>
+                <div class="stat-card">
+                    <h3>The problem</h3>
+                    <p>Many students lose track of tasks, miss deadlines, and cannot easily review their progress.</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Why it matters</h3>
+                    <p>A good plan saves time, improves focus, and helps students reach study goals more reliably.</p>
+                </div>
+                <div class="stat-card">
+                    <h3>What makes it special</h3>
+                    <p>Simplicity, monthly summaries, and account support make Planify a practical tool for everyday planning.</p>
+                </div>
             </div>
         </section>
 
-        <section id="mockups">
-            <h2>Логотип и эскизы</h2>
-            <div class="box"><img src="planify.png" alt="Логотип Planify" width="300"></div>
-            <div class="box"><img src="sketch1.png" alt="Эскиз 1" width="300"><img src="sketch2.png" alt="Эскиз 2" width="300"></div>
+        <section id="overview" class="section-card">
+            <h2>Project overview</h2>
+            <p>Planify is a web app for creating plans where users can build a daily, weekly, or monthly schedule, save it to a personal account, and review results at the end of each period.</p>
+            <ul>
+                <li><strong>What it is:</strong> a planner for tasks and study routines.</li>
+                <li><strong>The problem it solves:</strong> lack of structure and control over task completion.</li>
+                <li><strong>Why this matters:</strong> it helps users stay organized and improve productivity.</li>
+                <li><strong>What makes it unique:</strong> quick setup, easy registration, and clear monthly summaries.</li>
+            </ul>
         </section>
 
-        <section id="team">
-            <h2>Команда</h2>
-            <div class="team-member">
-                <div class="box" style="margin-bottom: 10px;"><img src="bau1.jpeg" alt="Есболат Бауыржан" width="300"></div>
-                <h3>Есболат Бауыржан</h3>
-                <span>Главный дизайнер и очень умный и красивый и вообще крутой огренджи, катает в доту2</span>
-            </div>
-            <div class="team-member">
-                <div class="box" style="margin-bottom: 10px;"><img src="aibar1.jpeg" alt="Мешитбай Айбар" width="300"></div>
-                <h3>Мешiтбай Айбар</h3>
-                <span>Главный программист, почти такой же крутой как Бауыржан, тоже любит доту, но первую </span>
+        <section id="features" class="section-card">
+            <h2>Features</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <h3>Step 1. Create a plan</h3>
+                    <p>Choose the period, list tasks, and set priorities to build a structured schedule.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Step 2. Register account</h3>
+                    <p>Save plans to a personal profile so you can access them from any device.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Step 3. Review results</h3>
+                    <p>Monthly summaries show completed tasks and areas that need more attention.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Step 4. Clear design</h3>
+                    <p>A white and gold palette keeps the interface calm, modern, and easy to use.</p>
+                </div>
             </div>
         </section>
+
+        <section id="demo" class="section-card">
+            <h2>Demo flow</h2>
+            <p>This section explains how users move from planning to reviewing results on the site.</p>
+            <div class="feature-step">
+                <div class="step-card">
+                    <h4>1. Open the homepage</h4>
+                    <p>Users see the main idea, the platform benefits, and how to start.</p>
+                </div>
+                <div class="step-card">
+                    <h4>2. Build a plan</h4>
+                    <p>Add tasks, choose the time period, and organize priorities quickly.</p>
+                </div>
+                <div class="step-card">
+                    <h4>3. Save the account</h4>
+                    <p>Registration keeps plans safe and makes them available anytime.</p>
+                </div>
+                <div class="step-card">
+                    <h4>4. Review progress</h4>
+                    <p>Monthly analytics highlight what was completed and what to improve.</p>
+                </div>
+            </div>
+            <div class="placeholder-large">Placeholder for interface mockups or screenshots</div>
+        </section>
+
+        <section id="sketches" class="section-card">
+            <h2>Sketches and prototype</h2>
+            <p>The final visual concept uses clean blocks, simple forms, and a focus on ease of use for the planning workflow.</p>
+            <div class="grid-2">
+                <div class="placeholder-large">Sketch 1</div>
+                <div class="placeholder-large">Sketch 2</div>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>Technology & capabilities</h2>
+            <div class="grid-2">
+                <div>
+                    <h3>Technology</h3>
+                    <ul>
+                        <li>HTML for page structure</li>
+                        <li>CSS for layout and styling</li>
+                        <li>GitHub for repository hosting</li>
+                        <li>GitHub Pages for publishing the site</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>What it does</h3>
+                    <ul>
+                        <li>Creates plans for different periods</li>
+                        <li>Saves plans in a personal account</li>
+                        <li>Shows monthly progress summaries</li>
+                        <li>Provides a modern and easy-to-use interface</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="sponsor" class="section-card">
+            <h2>Sponsor</h2>
+            <div class="sponsor-card">
+                <div class="interview">
+                    <dl>
+                        <dt>Q1: Why did you support Planify?</dt>
+                        <dd>Renzos Store saw the product's potential to help students and young professionals organize their time better.</dd>
+                        <dt>Q2: What did you like most?</dt>
+                        <dd>The simple interface and monthly summary focus make the site useful for regular planning.</dd>
+                        <dt>Q3: What advice did you give the team?</dt>
+                        <dd>Focus on easy registration and clear visual progress reports.</dd>
+                        <dt>Q4: What did you learn from this work?</dt>
+                        <dd>We learned how important early user feedback is before the final release.</dd>
+                    </dl>
+                </div>
+                <div class="sponsor-contact">
+                    <strong>Contact sponsor on WhatsApp</strong><br>
+                    +7 700 123 45 67<br>
+                    <a href="https://wa.me/77001234567" target="_blank" rel="noreferrer" style="color: var(--gold-dark); text-decoration: underline;">Message on WhatsApp</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="authors" class="section-card">
+            <h2>Authors</h2>
+            <div class="author-grid">
+                <div class="author-card">
+                    <h3>Sbolat Auyrzhan</h3>
+                    <p>Lead project designer.</p>
+                    <p>Motivated to build a clear user experience that helps students plan learning and projects faster.</p>
+                </div>
+                <div class="author-card">
+                    <h3>Yesitbay Ybar</h3>
+                    <p>Lead project developer.</p>
+                    <p>Motivated to keep the site fast, reliable, and accessible for everyone.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="footer-note">
+            This public page is ready for presentation and can be published on GitHub Pages. Repository: <a href="https://github.com/devbyy/planifyhw" target="_blank" rel="noreferrer">github.com/devbyy/planifyhw</a>
+        </div>
     </main>
-
-    <footer>
-        мы планируем сделать продукт к концу четверти, задонатье на KFC пж <br>Planify это сайт для создания планов. Сделано на GitHub, HTML и с поддержкой спонсора renzos store.
-    </footer>
 </body>
 </html>
